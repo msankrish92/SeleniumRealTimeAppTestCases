@@ -142,6 +142,7 @@ public class Day2NykaaApp {
 		System.out.println(message);
 //		17) Close all windows
 		driver.quit();
+		
 	}
 
 }
