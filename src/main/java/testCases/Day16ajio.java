@@ -17,7 +17,7 @@ import org.testng.Assert;
 
 public class Day16ajio {
 
-	public static void main(String[] args) throws InterruptedException {
+	public static void main(String[] args) {
 //		://www.ajio.com/shop/sale
 
 		ChromeOptions ops = new ChromeOptions();
