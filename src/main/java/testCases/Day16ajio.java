@@ -18,7 +18,7 @@ import org.testng.Assert;
 public class Day16ajio {
 
 	public static void main(String[] args) {
-//		://www.ajio.com/shop/sale
+//			1) Go to //www.ajio.com/shop/sale
 
 		ChromeOptions ops = new ChromeOptions();
 		ops.addArguments("--disable-notifications");
