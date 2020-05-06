@@ -4,12 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-import javax.swing.text.html.parser.ParserDelegator;
-
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 public class Day16ajio {
@@ -24,10 +27,12 @@ public class Day16ajio {
 		RemoteWebDriver driver = new ChromeDriver(ops);
 		driver.manage().window().maximize();
 		driver.get("https://www.ajio.com/shop/sale");
+		WebDriverWait wait = new WebDriverWait(driver, 15);
 
 //			2) Enter Bags in the Search field and Select Bags in Women Handbags
 		driver.findElementByXPath("//input[@placeholder='Search AJIO']").sendKeys("Bags");
-		Thread.sleep(5000);
+
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[text()='Women Handbags']")));
 		driver.findElementByXPath("//span[text()='Women Handbags']").click();
 
 //			3) Click on five grid and Select SORT BY as "What's New"
@@ -36,13 +41,17 @@ public class Day16ajio {
 		dropDown.selectByVisibleText("What's New");
 
 //			4) Enter Price Range Min as 2500 and Max as 5000
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("window.scrollBy(0,250)", "");
 		driver.findElementByXPath("//span[text()='price']").click();
 		driver.findElementByXPath("//input[@id='minPrice']").sendKeys("2500");
 		driver.findElementByXPath("//input[@id='maxPrice']").sendKeys("5000");
 		driver.findElementByXPath("//input[@id='maxPrice']/following-sibling::button").click();
 
 //			5) Click on the product "Puma Ferrari LS Shoulder Bag"
-		Thread.sleep(2000);
+		wait.until(ExpectedConditions.textToBe(
+				By.xpath("//div[@role='rowgroup']/div[2]//div//div/following-sibling::div/div[2]"),
+				"Ferrari LS Shoulder Bag"));
 		driver.findElementByXPath("//div[text()='Ferrari LS Shoulder Bag']").click();
 		Set<String> windowHandles = driver.getWindowHandles();
 		List<String> windowHandlesList = new ArrayList<String>(windowHandles);
@@ -73,10 +82,11 @@ public class Day16ajio {
 //			7) Check the availability of the product for pincode 560043, print the expected delivery date if it is available
 
 		driver.findElementByXPath("//span[contains(text(),\"Enter pin-code\")]").click();
-		Thread.sleep(2000);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@name='pincode']")));
 		driver.findElementByXPath("//input[@name='pincode']").sendKeys("560043");
 		driver.findElementByXPath("//button[@class='edd-pincode-modal-submit-btn']").click();
-		Thread.sleep(3000);
+		wait.until(ExpectedConditions
+				.visibilityOfElementLocated(By.xpath("//ul[@class='edd-message-success-details']/li/span")));
 		String expDel = driver.findElementByXPath("//ul[@class='edd-message-success-details']/li/span").getText();
 		System.out.println("Expected Delivery: " + expDel);
 
@@ -88,7 +98,7 @@ public class Day16ajio {
 //			9) Click on ADD TO BAG and then GO TO BAG
 
 		driver.findElementByXPath("//span[text()='ADD TO BAG']").click();
-		Thread.sleep(8000);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[text()='GO TO BAG']")));
 		driver.findElementByXPath("//span[text()='GO TO BAG']").click();
 
 //			10) Check the Order Total before apply coupon
@@ -98,12 +108,13 @@ public class Day16ajio {
 		System.out.println("Order Value Before applying coupon: " + orderValueSub2);
 
 //			11) Enter Coupon Code and Click Apply
-		Thread.sleep(3000);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@id='couponCodeInput']")));
 		driver.findElementByXPath("//input[@id='couponCodeInput']").sendKeys("EPIC");
 		driver.findElementByXPath("//button[text()='Apply']").click();
 
 //			12) Verify the Coupon Savings amount(round off if it in decimal) under Order Summary and the matches the amount calculated in Product details
-		Thread.sleep(3000);
+		wait.until(ExpectedConditions
+				.visibilityOfElementLocated(By.xpath("(//span[@class='price-value discount-price'])[2]")));
 		String CouponSavings = driver.findElementByXPath("(//span[@class='price-value discount-price'])[2]").getText();
 		String CouponSavingsSub = CouponSavings.replaceAll("[^0-9.]", "");
 		String CouponSavingsSub1 = CouponSavingsSub.substring(1);
@@ -114,9 +125,9 @@ public class Day16ajio {
 
 //			13) Click on Delete and Delete the item from Bag
 		driver.findElementByXPath("//div[@class='delete-btn']").click();
-		Thread.sleep(5000);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[text()='DELETE']")));
 		driver.findElementByXPath("//div[text()='DELETE']").click();
-		Thread.sleep(5000);
+		wait.until(ExpectedConditions.textToBe(By.xpath("//p[@class='empty-msg']"), "Your Shopping Bag is Empty!!"));
 
 //			14) Close all the browsers
 		driver.quit();
