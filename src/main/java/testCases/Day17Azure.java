@@ -106,8 +106,10 @@ public class Day17Azure {
 		driver.findElementByXPath("//button[text()='Add to estimate']").click();
 
 //		17) Change the Currency as Indian Rupee
-		Thread.sleep(10000);
 
+		wait.until(ExpectedConditions.visibilityOf(driver.findElementByXPath("//h4[text()='Loading Estimate']")));
+		wait.until(ExpectedConditions.invisibilityOf(driver.findElementByXPath("//h4[text()='Loading Estimate']")));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//select[@class='select currency-dropdown']")));
 		Select currency2 = new Select(driver.findElementByXPath("//select[@class='select currency-dropdown']"));
 		currency2.selectByValue("INR");
 
@@ -134,4 +136,6 @@ public class Day17Azure {
 		}
 
 	}
+
+	
 }
