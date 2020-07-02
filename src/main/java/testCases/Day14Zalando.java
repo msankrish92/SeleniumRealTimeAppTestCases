@@ -1,4 +1,4 @@
-package bigBasket;
+package testCases;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -112,4 +112,5 @@ public class Day14Zalando {
 		
 
 	}
+
 }

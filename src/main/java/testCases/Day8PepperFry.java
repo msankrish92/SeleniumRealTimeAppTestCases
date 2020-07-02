@@ -1,4 +1,4 @@
-package bigBasket;
+package testCases;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -104,3 +104,4 @@ public class Day8PepperFry {
 	}
 
 }
+
