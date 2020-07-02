@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="1" ignored="0" total="1" passed="0">
+  <reporter-output>
+  </reporter-output>
+  <suite name="Default suite" duration-ms="14933" started-at="2020-06-30T01:24:10 IST" finished-at="2020-06-30T01:24:25 IST">
+    <groups>
+      <group name="cucumber">
+        <method signature="AbstractTestNGCucumberTests.runScenario(cucumber.api.testng.PickleEventWrapper, cucumber.api.testng.CucumberFeatureWrapper)[pri:0, instance:testCases.Shein@76f2b07d]" name="runScenario" class="cucumber.api.testng.AbstractTestNGCucumberTests"/>
+      </group> <!-- cucumber -->
+    </groups>
+    <test name="Default test" duration-ms="14933" started-at="2020-06-30T01:24:10 IST" finished-at="2020-06-30T01:24:25 IST">
+      <class name="testCases.Shein">
+        <test-method status="PASS" signature="browserSetUp()[pri:0, instance:testCases.Shein@76f2b07d]" name="browserSetUp" is-config="true" duration-ms="9168" started-at="2020-06-30T01:24:01 IST" finished-at="2020-06-30T01:24:10 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- browserSetUp -->
+        <test-method status="PASS" signature="setUpClass()[pri:0, instance:testCases.Shein@76f2b07d]" name="setUpClass" is-config="true" duration-ms="368" started-at="2020-06-30T01:24:10 IST" finished-at="2020-06-30T01:24:10 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUpClass -->
+        <test-method status="FAIL" signature="runScenario(cucumber.api.testng.PickleEventWrapper, cucumber.api.testng.CucumberFeatureWrapper)[pri:0, instance:testCases.Shein@76f2b07d]" name="runScenario" duration-ms="14387" started-at="2020-06-30T01:24:10 IST" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2020-06-30T01:24:25 IST">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA["TC_001"]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA["Shein"]]>
+              </value>
+            </param>
+          </params>
+          <exception class="org.openqa.selenium.ElementClickInterceptedException">
+            <message>
+              <![CDATA[element click intercepted: Element <a style="color: #000;" title="Jeans" class="" href="https://www.shein.in/Jeans-c-1934.html?icn=jeans&amp;ici=in_tab01navbar02menu11dir01&amp;srctype=category&amp;userpath=category>WOMEN>CLOTHING>Denim>Jeans&amp;scici=navbar_2~~tab01navbar02menu11dir01~~2_11_1~~real_1934~~SPcCccWomenCategory_default~~0~~0" da-event-click="2-2-1" data-scici="navbar_2~~tab01navbar02menu11dir01~~2_11_1~~real_1934~~SPcCccWomenCategory_default~~0~~0" data-node-id="640600054">...</a> is not clickable at point (15, 7). Other element would receive the click: <div class="config-wrap j-topbanner-fixer" style="background: url(&quot;//img.ltwebstatic.com/images3_acp/2020/06/25/15930711117f7cfdf0aaa3acab72192ca364854a0f.gif&quot;) center 0px / 1920px 48px transparent; transform: translateY(0px);">...</div>
+  (Session info: chrome=83.0.4103.116)
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'LAPTOP-AGHJRJVA', ip: '192.168.137.1', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '1.8.0_171'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 83.0.4103.116, chrome: {chromedriverVersion: 83.0.4103.39 (ccbf011cb2d2b..., userDataDir: C:\Users\hp\AppData\Local\T...}, goog:chromeOptions: {debuggerAddress: localhost:60847}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:virtualAuthenticators: true}
+Session ID: 7db458f322cfc46e79a9db0161225d2e]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[org.openqa.selenium.ElementClickInterceptedException: element click intercepted: Element <a style="color: #000;" title="Jeans" class="" href="https://www.shein.in/Jeans-c-1934.html?icn=jeans&amp;ici=in_tab01navbar02menu11dir01&amp;srctype=category&amp;userpath=category>WOMEN>CLOTHING>Denim>Jeans&amp;scici=navbar_2~~tab01navbar02menu11dir01~~2_11_1~~real_1934~~SPcCccWomenCategory_default~~0~~0" da-event-click="2-2-1" data-scici="navbar_2~~tab01navbar02menu11dir01~~2_11_1~~real_1934~~SPcCccWomenCategory_default~~0~~0" data-node-id="640600054">...</a> is not clickable at point (15, 7). Other element would receive the click: <div class="config-wrap j-topbanner-fixer" style="background: url(&quot;//img.ltwebstatic.com/images3_acp/2020/06/25/15930711117f7cfdf0aaa3acab72192ca364854a0f.gif&quot;) center 0px / 1920px 48px transparent; transform: translateY(0px);">...</div>
+  (Session info: chrome=83.0.4103.116)
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'LAPTOP-AGHJRJVA', ip: '192.168.137.1', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '1.8.0_171'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 83.0.4103.116, chrome: {chromedriverVersion: 83.0.4103.39 (ccbf011cb2d2b..., userDataDir: C:\Users\hp\AppData\Local\T...}, goog:chromeOptions: {debuggerAddress: localhost:60847}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:virtualAuthenticators: true}
+Session ID: 7db458f322cfc46e79a9db0161225d2e
+at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:187)
+at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:122)
+at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
+at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:158)
+at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
+at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:552)
+at org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:285)
+at org.openqa.selenium.remote.RemoteWebElement.click(RemoteWebElement.java:84)
+at testCases.Shein.mouseover_on_Clothing_and_click_Jeans(Shein.java:22)
+at ✽.Mouseover on Clothing and click Jeans(file:src/main/java/feature/Shien.feature:6)
+]]>
+            </full-stacktrace>
+          </exception> <!-- org.openqa.selenium.ElementClickInterceptedException -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- runScenario -->
+        <test-method status="PASS" signature="tearDownClass()[pri:0, instance:testCases.Shein@76f2b07d]" name="tearDownClass" is-config="true" duration-ms="13" started-at="2020-06-30T01:24:25 IST" finished-at="2020-06-30T01:24:25 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDownClass -->
+      </class> <!-- testCases.Shein -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>
