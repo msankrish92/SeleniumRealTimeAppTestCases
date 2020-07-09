@@ -143,7 +143,7 @@ public class Day11SnapDeal {
 		Assert.assertEquals(total, cartTotal);
 //		17) Close all the windows
 		driver.findElementByXPath("//form[@id='checkout-continue']").click();
-		driver.close();
+		driver.quit();
 		
 	}
 }
