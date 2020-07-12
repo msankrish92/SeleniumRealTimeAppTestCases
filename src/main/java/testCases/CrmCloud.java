@@ -1,18 +1,25 @@
 package testCases;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 
 public class CrmCloud {
 
-	public static void main(String[] args) throws InterruptedException {
+	public static void main(String[] args) throws InterruptedException, ParseException {
 
 		System.setProperty("webdriver.chrome.driver", "./drivers/chromedriver.exe");
 		RemoteWebDriver driver = new ChromeDriver();
@@ -70,9 +77,11 @@ public class CrmCloud {
 		driver.findElementById("DetailFormalt_address_country-input").sendKeys("India");
 		driver.findElementById("DetailFormalt_address_postalcode-input").sendKeys("600100");
 		driver.findElementById("DetailForm_save2").click();
-
+		Thread.sleep(5000);
 //			10) Mouse over on Today's Activities and click Meetings
+		wait.until(ExpectedConditions.refreshed(ExpectedConditions.visibilityOfElementLocated(By.id("grouptab-0"))));
 		builder.moveToElement(driver.findElementById("grouptab-0")).perform();
+
 		driver.findElementByXPath("//div[text()='Meetings']").click();
 
 //			11) Click Create 
@@ -99,15 +108,50 @@ public class CrmCloud {
 				break;
 			}
 		}
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		Calendar cal = Calendar.getInstance();
+		System.out.println("Current Date: " + sdf.format(cal.getTime()));
+		cal.add(Calendar.DAY_OF_MONTH, 1);
+		String newDate = sdf.format(cal.getTime());
+		System.out.println("Date after Addition: " + newDate);
 
-		driver.findElementByXPath("//div[contains(@class,'current selected responsive')]/following-sibling::div")
-				.click();
+		driver.findElementByXPath("(//input[@class='input-text'])[4]").sendKeys(newDate, Keys.ENTER);
 		driver.findElementByXPath("//div[@id='DetailFormdate_start-calendar-text']//input").clear();
 		driver.findElementByXPath("//div[@id='DetailFormdate_start-calendar-text']//input").sendKeys("15");
-		driver.findElementByXPath("(//div[@id='DetailFormdate_start-calendar-text']//following-sibling::div)[5]").click();
+		driver.findElementByXPath("(//div[@id='DetailFormdate_start-calendar-text']//following-sibling::div)[5]")
+				.click();
 //			14) Click Add paricipants, add your created Contact name and click Save
+		driver.findElementByName("addInvitee").click();
+		wait.until(ExpectedConditions.invisibilityOf(driver.findElementByXPath("(//input[@class='input-text'])[4]")));
+		wait.until(ExpectedConditions.refreshed(
+				ExpectedConditions.visibilityOfElementLocated(By.xpath("(//input[@class='input-text'])[4]"))));
+		driver.findElementByXPath("//div[@id='app-search-text']/input").sendKeys("Sanjay M");
+		driver.findElementByXPath("//div[text()='Sanjay M']").click();
+		driver.findElementById("DetailForm_save2-label").click();
+//		Thread.sleep(3000);
+		wait.until(ExpectedConditions.titleContains("1CRM: Meetings"));
+
 //			15) Go to Sales and Marketting-->Contacts
+		builder.moveToElement(driver.findElementByXPath("//div[text()='Sales & Marketing']")).perform();
+		driver.findElementByXPath("//div[text()='Contacts']").click();
+
 //			16) search the lead Name and click the name from the result
+		driver.findElementById("filter_text").sendKeys("Sanjay");
+
+//		Thread.sleep(5000);
+		for (int i = 0; i < 5; i++) {
+			driver.findElementById("filter_text").sendKeys(Keys.ENTER);
+			if (driver.findElementsByXPath("//a[contains(text(),'Sanjay')]").size() != 0) {
+
+				break;
+			}
+		}
+		driver.findElementByXPath("//a[contains(text(),'Sanjay')]").click();
+
 //			17) Check weather the Meeting is assigned to the contact under Activities Section.
+		wait.until(ExpectedConditions.textToBe(By.xpath("//span[@class='detailLink']/a"),"Project Status"));
+//				Thread.sleep(5000);
+		String actual = driver.findElementByXPath("//span[@class='detailLink']/a").getText();
+		Assert.assertEquals(actual, "Project Status");
 	}
 }
