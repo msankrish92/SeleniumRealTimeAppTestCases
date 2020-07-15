@@ -2,6 +2,7 @@ package testCases;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.Duration;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
@@ -47,7 +48,7 @@ public class CrmCloud {
 //			6) Select Title and type First name, Last Name, Email and Phone Numbers
 //		Thread.sleep(5000);
 //		driver.findElement(By.xpath("Sales & Marketing"))
-		WebDriverWait wait = new WebDriverWait(driver, 15);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 //		driver.findElement(By.xpath("//li[@class='menubar-item current']//div"))
 		wait.until(ExpectedConditions.textToBePresentInElementLocated(
 				By.xpath("//li[@class='menubar-item current']//div"), "Sales & Marketing"));
